@@ -9,7 +9,12 @@
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
 
+const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const dependencies = require('./package.json').dependencies
+
 const { configure } = require('quasar/wrappers');
+const path = require("path");
+
 
 module.exports = configure(function (ctx) {
   return {
@@ -23,7 +28,7 @@ module.exports = configure(function (ctx) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
     boot: [
-      
+
       'axios',
     ],
 
@@ -70,6 +75,26 @@ module.exports = configure(function (ctx) {
       // https://v2.quasar.dev/quasar-cli-webpack/handling-webpack
       // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
       // chainWebpack (/* chain */) {}
+      extendWebpack(cfg) {
+        cfg.entry = path.resolve(__dirname, './.quasar/main.js')
+        cfg.plugins.push(
+          new ModuleFederationPlugin({
+            name: 'app_core',
+            filename: 'remoteEntry.js',
+            exposes: {},
+            remotes: {
+              app_common: `app_common@${process.env.APP_URL_COMMON}/remoteEntry.js`
+            },
+            shared: {
+              ...dependencies,
+            }
+          }),
+        );
+      },
+      chainWebpack (chain) {
+        chain.optimization.delete('splitChunks');
+      },
+      env: require('dotenv').config({ path: (process.env.CENTRE)?`.env.${process.env.CENTRE}`:`.env.dev` }).parsed,
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-devServer
@@ -77,7 +102,7 @@ module.exports = configure(function (ctx) {
       server: {
         type: 'http'
       },
-      port: 8080,
+      port: 8088,
       open: true // opens browser window automatically
     },
 
