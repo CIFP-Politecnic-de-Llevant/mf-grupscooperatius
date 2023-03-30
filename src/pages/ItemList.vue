@@ -2,13 +2,13 @@
   <q-page class="flex column" padding>
     <div>
       <q-btn-group push class="q-mb-lg q-mr-lg">
-        <q-btn  color="primary" label="Nou ítem" icon="add" :to="'/apps/grupscooperatius/item'"/>
+        <q-btn  color="primary" label="Nou ítem" icon="add" :to="'/item'"/>
         <q-btn v-if="selected.length === 0" disable color="primary" label="Editar" icon="edit" />
-        <q-btn  v-if="selected.length > 0" color="primary" label="Editar" icon="edit" :to="'/apps/grupscooperatius/item/'+selected[0].id"/>
+        <q-btn  v-if="selected.length > 0" color="primary" label="Editar" icon="edit" :to="'/item/'+selected[0].id"/>
       </q-btn-group>
 
       <q-btn-group push class="q-mb-lg">
-        <q-btn  color="primary" label="Grups cooperatius" icon="group" :to="'/apps/grupscooperatius'"/>
+        <q-btn  color="primary" label="Grups cooperatius" icon="group" :to="'/llistat'"/>
       </q-btn-group>
     </div>
 

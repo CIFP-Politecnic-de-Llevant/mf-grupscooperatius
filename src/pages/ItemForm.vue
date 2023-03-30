@@ -2,11 +2,11 @@
   <q-page class="flex column" padding>
     <div>
       <q-btn-group push class="q-mb-lg q-mr-lg">
-        <q-btn  color="primary" label="Gestionar ítems" icon="list" :to="'/apps/grupscooperatius/items'"/>
+        <q-btn  color="primary" label="Gestionar ítems" icon="list" :to="'/items'"/>
       </q-btn-group>
 
       <q-btn-group push class="q-mb-lg">
-        <q-btn  color="primary" label="Grups cooperatius" icon="group" :to="'/apps/grupscooperatius'"/>
+        <q-btn  color="primary" label="Grups cooperatius" icon="group" :to="'/llistat'"/>
       </q-btn-group>
     </div>
 

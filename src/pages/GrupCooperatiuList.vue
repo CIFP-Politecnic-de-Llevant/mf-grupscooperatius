@@ -3,13 +3,13 @@
 
     <div>
       <q-btn-group push class="q-mb-lg q-mr-lg">
-        <q-btn color="primary" label="Nova mescla" icon="add" :to="'/apps/grupscooperatius/mescla'"/>
-        <q-btn v-if="selected.length > 0" color="primary" label="Editar" icon="edit" :to="'/apps/grupscooperatius/mescla/'+selected[0].id"/>
+        <q-btn color="primary" label="Nova mescla" icon="add" :to="'/mescla'"/>
+        <q-btn v-if="selected.length > 0" color="primary" label="Editar" icon="edit" :to="'/mescla/'+selected[0].id"/>
         <q-btn v-else disable color="primary" label="Editar" icon="edit" />
       </q-btn-group>
 
       <q-btn-group push class="q-mb-lg">
-        <q-btn color="primary" label="Gestionar ítems" icon="list" :to="'/apps/grupscooperatius/items'"/>
+        <q-btn color="primary" label="Gestionar ítems" icon="list" :to="'/items'"/>
       </q-btn-group>
 
     </div>
