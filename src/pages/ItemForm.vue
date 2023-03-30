@@ -49,9 +49,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {Item} from "src/model/apps/grupsCooperatius/Item";
+import {Item} from "src/model/Item";
 import {GrupCooperatiuService} from "src/service/GrupCooperatiuService";
-import {ValorItem} from "src/model/apps/grupsCooperatius/ValorItem";
+import {ValorItem} from "src/model/ValorItem";
 
 export default defineComponent({
   name: 'PageGrupCorreuForm',

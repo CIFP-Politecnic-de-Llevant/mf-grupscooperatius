@@ -39,7 +39,7 @@
 import { defineComponent } from 'vue';
 import {QTableColumn} from "quasar";
 import {GrupCooperatiuService} from "src/service/GrupCooperatiuService";
-import {GrupCooperatiu} from "src/model/apps/grupsCooperatius/GrupCooperatiu";
+import {GrupCooperatiu} from "src/model/GrupCooperatiu";
 
 export default defineComponent({
   name: 'PageGrupCorreu',

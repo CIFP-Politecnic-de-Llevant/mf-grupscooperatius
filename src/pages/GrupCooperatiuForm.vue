@@ -332,19 +332,19 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import {Item} from "src/model/apps/grupsCooperatius/Item";
-import {ItemGrupCooperatiu} from "src/model/apps/grupsCooperatius/ItemGrupCooperatiu";
+import {Item} from "src/model/Item";
+import {ItemGrupCooperatiu} from "src/model/ItemGrupCooperatiu";
 import {UsuariService} from "src/service/UsuariService";
 import {Usuari} from "src/model/Usuari";
 import {GrupCooperatiuService} from "src/service/GrupCooperatiuService";
-import {GrupCorreu} from "src/model/google/GrupCorreu";
+import {GrupCorreu} from "src/model/GrupCorreu";
 import {GrupCorreuService} from "src/service/GrupCorreuService";
-import {Membre} from "src/model/apps/grupsCooperatius/Membre";
-import {Agrupament} from "src/model/apps/grupsCooperatius/Agrupament";
-import {ValorItem} from "src/model/apps/grupsCooperatius/ValorItem";
-import {ValorItemMembre} from "src/model/apps/grupsCooperatius/ValorItemMembre";
+import {Membre} from "src/model/Membre";
+import {Agrupament} from "src/model/Agrupament";
+import {ValorItem} from "src/model/ValorItem";
+import {ValorItemMembre} from "src/model/ValorItemMembre";
 import Chart from 'chart.js/auto'
-import {GrupCooperatiu} from "src/model/apps/grupsCooperatius/GrupCooperatiu";
+import {GrupCooperatiu} from "src/model/GrupCooperatiu";
 import {QTableColumn} from "quasar";
 
 

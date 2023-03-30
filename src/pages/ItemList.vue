@@ -36,8 +36,8 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import {GrupCooperatiuService} from 'src/service/GrupCooperatiuService';
-import {Item} from "src/model/apps/grupsCooperatius/Item";
-import {ValorItem} from "src/model/apps/grupsCooperatius/ValorItem";
+import {Item} from "src/model/Item";
+import {ValorItem} from "src/model/ValorItem";
 import {QTableColumn} from "quasar";
 
 export default defineComponent({
