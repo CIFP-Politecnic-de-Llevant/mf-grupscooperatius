@@ -33,5 +33,11 @@ export default route(function (/* { store, ssrContext } */) {
     ),
   });
 
+  Router.beforeEach((to, from, next) => {
+    axios.defaults.withCredentials = true;
+    axios.defaults.headers.common['Authorization'] = 'Bearer '+localStorage.getItem('token');
+    next();
+  })
+
   return Router;
 });
