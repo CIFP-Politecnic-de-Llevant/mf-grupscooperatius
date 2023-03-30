@@ -1,10 +1,9 @@
 import {axios}  from 'boot/axios'
-import {Item} from "src/model/apps/grupsCooperatius/Item";
-import {ValorItem} from "src/model/apps/grupsCooperatius/ValorItem";
-import {Agrupament} from "src/model/apps/grupsCooperatius/Agrupament";
-import {GrupCooperatiu} from "src/model/apps/grupsCooperatius/GrupCooperatiu";
-import {Membre} from "src/model/apps/grupsCooperatius/Membre";
-import {ItemGrupCooperatiu} from "src/model/apps/grupsCooperatius/ItemGrupCooperatiu";
+import {Item} from "src/model/Item";
+import {ValorItem} from "src/model/ValorItem";
+import {Agrupament} from "src/model/Agrupament";
+import {GrupCooperatiu} from "src/model/GrupCooperatiu";
+import {Membre} from "src/model/Membre";
 
 export class GrupCooperatiuService {
 

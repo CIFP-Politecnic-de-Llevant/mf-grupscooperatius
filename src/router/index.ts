@@ -6,6 +6,7 @@ import {
   createWebHistory,
 } from 'vue-router';
 import routes from './routes';
+import axios from "axios";
 
 /*
  * If not building with SSR mode, you can
