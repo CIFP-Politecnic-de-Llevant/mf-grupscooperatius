@@ -2,20 +2,20 @@
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
-        <q-btn
-          flat
-          dense
-          round
-          icon="menu"
-          aria-label="Menu"
-          @click="toggleLeftDrawer"
-        />
+      <q-btn
+        flat
+        dense
+        round
+        icon="menu"
+        aria-label="Menu"
+        @click="toggleLeftDrawer"
+      />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
+      <q-toolbar-title>
+        GestSuite - Convalidacions
+      </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+      <Menu v-if="enableApps && (rolsUser.find(rol=>rol===rols.ADMINISTRADOR || rol===rols.DIRECTOR || rol===rols.CAP_ESTUDIS || rol===rols.ADMINISTRATIU || rol===rols.WEB))"></Menu>
       </q-toolbar>
     </q-header>
 
@@ -25,17 +25,38 @@
       bordered
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
-
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
+        <q-item clickable to="/llistat">
+          <q-item-section avatar>
+            <q-icon name="diversity_3" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Grups cooperatius</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable to="/mescla">
+          <q-item-section avatar>
+            <q-icon name="blender" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Mescla</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable to="/items">
+          <q-item-section avatar>
+            <q-icon name="list" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Ítems</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable to="/logout">
+          <q-item-section avatar>
+            <q-icon name="logout" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Sortir</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -45,73 +66,44 @@
   </q-layout>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import EssentialLink from 'components/EssentialLink.vue';
+<script>
 
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-];
+import { defineComponent,defineAsyncComponent,ref } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import {Rol} from '../model/Rol.ts'
+
 
 export default defineComponent({
   name: 'MainLayout',
-
-  components: {
-    EssentialLink
+  components:{
+    Menu: defineAsyncComponent(()=> import('app_common/Menu.vue'))
   },
+  setup () {
+    const leftDrawerOpen = ref(false)
+    const rolsUser = JSON.parse(localStorage.getItem("rol")) || []; //Inicialitzem a un array buit si no existeix cap rol
+    const router = useRouter()
+    const route = useRoute()
+    const rols = Rol;
 
-  data() {
+    const enableGrupsCooperatius = (process.env.APP_ENABLE_GRUPSCOOPERATIUS==='true');
+    const enableConvalidacions=(process.env.APP_ENABLE_CONVALIDACIONS==='true');
+    const enableWebIESManacor=(process.env.APP_ENABLE_WEBIESMANACOR==='true');
+
+    const enableApps = enableGrupsCooperatius || enableConvalidacions || enableWebIESManacor;
+
     return {
-      leftDrawerOpen: false,
-      essentialLinks: linksList
-    }
-  },
-
-  methods: {
-    toggleLeftDrawer () {
-      this.leftDrawerOpen = !this.leftDrawerOpen
+      rolsUser,
+      rols,
+      enableApps,
+      leftDrawerOpen,
+      toggleLeftDrawer () {
+        leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      goBack(){
+        router.go(-1);
+      }
     }
   }
-});
+})
 </script>
+
