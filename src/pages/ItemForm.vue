@@ -112,7 +112,7 @@ export default defineComponent({
       await dialog.hide();
 
       //Redirect
-      await this.$router.push('/apps/grupscooperatius/items');
+      await this.$router.push('/items');
     }
   }
 })

@@ -12,7 +12,7 @@ export class GrupCooperatiuService {
     const response = await axios.get(process.env.API + '/api/grupscooperatius/item/' + id);
     const data = await response.data;
     return {
-      id: data.iditem,
+      id: data.idItem,
       nom: data.nom
     }
   }
@@ -22,7 +22,7 @@ export class GrupCooperatiuService {
     const data = await response.data;
     return data.map((item:any):Item=>{
         return {
-          id: item.iditem,
+          id: item.idItem,
           nom: item.nom
         }
     });
@@ -57,7 +57,7 @@ export class GrupCooperatiuService {
       nom: data.nom,
       itemsGrupCooperatiu: data.itemsGrupsCooperatius.map((igc:any)=>{
         igc.item = {
-          id: igc.item.iditem,
+          id: igc.item.idItem,
           nom: igc.item.nom
         } as Item
 
