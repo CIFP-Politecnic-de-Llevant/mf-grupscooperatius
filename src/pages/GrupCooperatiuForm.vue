@@ -819,7 +819,7 @@ export default defineComponent({
       }
 
       //Fem lo de JSON per convertir l'objecte Proxy a array pla
-      const grups = await this.$axios.post(process.env.API + '/aleatori',mescla);
+      const grups = await this.$axios.post(process.env.API + '/api/grupscooperatius/aleatori',mescla);
       if(grups.data && grups.data.notifyType && grups.data.notifyType !== "ERROR") {
         this.result = grups.data.sort((a:Agrupament,b:Agrupament)=>a.numero-b.numero)
 
@@ -850,7 +850,7 @@ export default defineComponent({
         percentatgeAmics: this.percentatgeAmics,
         percentatgeEnemics: this.percentatgeEnemics
       }
-      const grups = await this.$axios.post(process.env.API + '/genetica',mescla);
+      const grups = await this.$axios.post(process.env.API + '/api/grupscooperatius/genetica',mescla);
 
       //Comprovem que es torna una mescla i no una notificació (errors...)
       if(grups.data && !grups.data.notifyType) {
