@@ -575,7 +575,8 @@ export default defineComponent({
       if(grup){
         const grupCorreuUsuaris:GrupCorreu|undefined = await GrupCorreuService.getGrupAmbUsuaris(grup);
         if(grupCorreuUsuaris && grupCorreuUsuaris.usuaris) {
-          grupCorreuUsuaris.usuaris.forEach((user: Usuari) => {
+          grupCorreuUsuaris.usuaris.map(async (u: Usuari) => {
+            const user:Usuari = await u;
             this.members.push({
               nom: user.cognom1 + ' ' + user.cognom2 + ', ' + user.nom,
               valorsItemMembre: [],
