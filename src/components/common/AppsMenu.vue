@@ -17,8 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Todo, Meta } from './models';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'ExampleComponent',
