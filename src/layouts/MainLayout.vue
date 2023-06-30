@@ -12,7 +12,7 @@
       />
 
       <q-toolbar-title>
-        GestSuite - Convalidacions
+        GestSuite - Grups Cooperatius
       </q-toolbar-title>
 
         <Menuapp v-if="enableApps && (rolsUser.find(rol=>rol===rols.ADMINISTRADOR || rol===rols.DIRECTOR || rol===rols.CAP_ESTUDIS || rol===rols.ADMINISTRATIU || rol===rols.WEB))"></Menuapp>
