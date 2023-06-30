@@ -278,7 +278,7 @@
           </q-item-label>
         </q-item-section>
         </template>
-        <div class="q-pl-lg">
+        <div class="q-pb-lg q-pl-lg">
           <p class="text-subtitle2" v-if="membre.amics.length>0">Amics</p>
           <div class="q-pl-lg" v-for="amic in membre.amics">
             <div>- {{ amic.nom }} (Grup {{result.reduce((total,g:Agrupament) => {
@@ -291,7 +291,7 @@
               }})</div>
           </div>
           <p class="text-subtitle2 q-mt-md" v-if="membre.enemics.length>0">Enemics</p>
-          <div class="q-pl-lg q-pb-lg" v-for="enemic in membre.enemics">
+          <div class="q-pl-lg" v-for="enemic in membre.enemics">
             <div>- {{ enemic.nom }} (Grup {{result.reduce((total,g:Agrupament) => {
               const trobat:Membre = g.membres.find(m => (m.nom === enemic.nom))
               if(trobat){
@@ -304,10 +304,10 @@
         </div>
       </q-expansion-item>
 
-      <q-item clickable v-ripple>Total membres: {{grup.membres.length}}</q-item>
+      <q-item clickable v-ripple><span class="text-subtitle1 text-weight-bold">Total membres: {{grup.membres.length}}</span></q-item>
       <q-item v-for="item in grupCooperatiu.itemsGrupCooperatiu" clickable v-ripple>
         <q-item-section top class="gt-sm">
-          <q-item-label class="q-mt-sm">{{item.item.nom}}</q-item-label>
+          <q-item-label class="q-mt-sm text-subtitle1 text-weight-bold">{{item.item.nom}}</q-item-label>
           <q-item-label v-for="valorItem in item.item.valorsMapped" class="q-mt-sm">{{valorItem.label}} {{countValorItemMembers(valorItem,grup.membres)}}</q-item-label>
         </q-item-section>
       </q-item>
