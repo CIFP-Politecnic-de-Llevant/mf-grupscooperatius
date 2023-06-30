@@ -183,7 +183,7 @@
           <q-td :props="props" key="idmembre">{{props.row.nom}}</q-td>
           <q-td :props="props" key="amics">
             <q-select
-              style="min-width: 350px; overflow: hidden; text-overflow: ellipsis;"
+              style="min-width: 250px; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.amics"
               :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
@@ -197,7 +197,7 @@
           </q-td>
           <q-td :props="props" key="enemics">
             <q-select
-              style="min-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              style="min-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.enemics"
               :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
