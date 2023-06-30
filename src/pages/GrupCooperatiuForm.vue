@@ -263,7 +263,7 @@
 
       <q-expansion-item v-for="membre in grup.membres" expand-icon-toggle expand-separator clickable v-ripple>
         <template v-slot:header>
-        <q-item-section top class="col-10 gt-sm">
+        <q-item-section top class="col-10">
           <q-item-label class="q-mt-sm">
             <div class="flex">
             {{membre.nom}}
@@ -1022,6 +1022,13 @@ export default defineComponent({
     position: sticky;
     left: 0;
     z-index: 1;
+  }
+
+  @media print {
+    header.q-header, div.q-drawer-container, q-btn{
+      display: none;
+    }
+    p.bodyText {font-family:georgia, times, serif;}
   }
 }
 </style>
