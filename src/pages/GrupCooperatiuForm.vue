@@ -183,23 +183,31 @@
           <q-td :props="props" key="idmembre">{{props.row.nom}}</q-td>
           <q-td :props="props" key="amics">
             <q-select
-              style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              style="min-width: 350px; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.amics"
               :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
               multiple
               label="Amistats"
-            />
+            >
+              <template v-slot:selected-item="scope">
+                <span>{{(scope.index + 1)}} - {{scope.opt}}&nbsp;&nbsp;</span>
+              </template>
+            </q-select>
           </q-td>
           <q-td :props="props" key="enemics">
             <q-select
-              style="width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+              style="min-width: 350px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.enemics"
               :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
               multiple
               label="Enemistats"
-            />
+            >
+              <template v-slot:selected-item="scope">
+                <span>{{(scope.index + 1)}} - {{scope.opt}}&nbsp;&nbsp;</span>
+              </template>
+            </q-select>
           </q-td>
           <q-td :props="props" key="agrupamentFixe">
             <q-input v-model="props.row.agrupamentFixe" label="Número de grup" hint="Emplenar NOMÉS si es vol fixar el grup" />
@@ -216,7 +224,7 @@
     <!-- MESCLES -->
     <div class="flex">
       <q-btn-group class="q-mb-lg q-mt-lg">
-        <q-btn  v-if="members.length > 0" color="primary" label="Mescla aleatòria" icon="edit" @click="mesclaAleatoria" />
+        <!--q-btn  v-if="members.length > 0" color="primary" label="Mescla aleatòria" icon="edit" @click="mesclaAleatoria" /-->
         <q-btn-dropdown v-if="members && grupCooperatiu.itemsGrupCooperatiu && members.length > 0 && grupCooperatiu.itemsGrupCooperatiu.length > 0" color="primary" label="Mescla genètica" icon="edit" auto-close>
           <q-list>
             <q-item clickable v-close-popup @click="mesclaGenetica(1000)">
@@ -300,6 +308,10 @@
               return total;
             },0)
               }})</div>
+          </div>
+          <p class="text-subtitle1 text-weight-bold q-mt-lg">Ítems</p>
+          <div v-for="item in membre.valorsItemMembre">
+            <p><strong>{{item.valorItem.item.nom}}:</strong> {{item.valorItem.valor}}</p>
           </div>
         </div>
       </q-expansion-item>
