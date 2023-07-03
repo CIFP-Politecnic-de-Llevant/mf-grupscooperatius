@@ -186,12 +186,21 @@
               style="min-width: 250px; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.amics"
-              :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
+              :options="membersFiltered.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
               multiple
+              use-input
+              @filter="amicsFilterFn"
               label="Amistats"
             >
               <template v-slot:selected-item="scope">
                 <span>{{(scope.index + 1)}} - {{scope.opt}}&nbsp;&nbsp;</span>
+              </template>
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    Sense resultats
+                  </q-item-section>
+                </q-item>
               </template>
             </q-select>
           </q-td>
@@ -200,12 +209,21 @@
               style="min-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
               filled
               v-model="props.row.enemics"
-              :options="members.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
+              :options="membersFiltered.map(m=>m.nom).sort((a,b)=>a.localeCompare(b))"
               multiple
+              use-input
+              @filter="amicsFilterFn"
               label="Enemistats"
             >
               <template v-slot:selected-item="scope">
                 <span>{{(scope.index + 1)}} - {{scope.opt}}&nbsp;&nbsp;</span>
+              </template>
+              <template v-slot:no-option>
+                <q-item>
+                  <q-item-section class="text-grey">
+                    Sense resultats
+                  </q-item-section>
+                </q-item>
               </template>
             </q-select>
           </q-td>
@@ -367,6 +385,7 @@ export default defineComponent({
     return {
       numGrups: 2,
       members: [] as Membre[],
+      membersFiltered: [] as Membre[],
       grupCooperatiu: {
         itemsGrupCooperatiu: [] as ItemGrupCooperatiu[],
       } as GrupCooperatiu,
@@ -752,6 +771,20 @@ export default defineComponent({
             label: item.nom,
             value: item.id!.toString()
           }
+        })
+      })
+    },
+    amicsFilterFn (val:string, update:Function) {
+      update(() => {
+        const needle = val.toLowerCase()
+        console.log(val,this.members)
+        this.membersFiltered = this.members.filter(v => {
+          let nom = false;
+
+          if(v.nom) {
+            nom = v.nom.toLowerCase().indexOf(needle) > -1
+          }
+          return nom;
         })
       })
     },
