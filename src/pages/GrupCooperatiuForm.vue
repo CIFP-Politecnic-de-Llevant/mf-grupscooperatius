@@ -777,7 +777,6 @@ export default defineComponent({
     amicsFilterFn (val:string, update:Function) {
       update(() => {
         const needle = val.toLowerCase()
-        console.log(val,this.members)
         this.membersFiltered = this.members.filter(v => {
           let nom = false;
 

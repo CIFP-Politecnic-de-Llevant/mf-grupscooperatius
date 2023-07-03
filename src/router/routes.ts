@@ -12,6 +12,7 @@ const routes: RouteRecordRaw[] = [
       { path: 'items', component: () => import('pages/ItemList.vue') },
       { path: 'item', component: () => import('pages/ItemForm.vue') },
       { path: 'item/:id', component: () => import('pages/ItemForm.vue') },
+      { path: 'parser', component: () => import('pages/Parser.vue') },
       { path: 'login', component: () => import('components/common/Login.vue'), props: { urlRedirect: "/llistat" } },
       { path: 'logout', component: () => import('components/common/Logout.vue') },
     ],
