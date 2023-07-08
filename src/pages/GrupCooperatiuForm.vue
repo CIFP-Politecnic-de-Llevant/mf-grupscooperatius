@@ -421,7 +421,7 @@ export default defineComponent({
         ok: false // we want the user to not be able to close it
       })
 
-      const usuaris:Array<Usuari>= await UsuariService.findUsuarisActius();
+      const usuaris:Array<Usuari>= await UsuariService.findUsuarisActius(false);
       this.users=usuaris;
 
       const grupsCorreu:Array<GrupCorreu> = await GrupCorreuService.findAll();
@@ -921,7 +921,14 @@ export default defineComponent({
       })
       return count;
     },
-    desa: function(){
+    desa: async function(){
+      const dialog = this.$q.dialog({
+        message: 'Desant...',
+        progress: true, // we enable default settings
+        persistent: true, // we want the user to not be able to close it
+        ok: false // we want the user to not be able to close it
+      })
+
       const resultat:Agrupament[] = this.result;
       const members:Membre[] = this.members;
 
@@ -954,7 +961,9 @@ export default defineComponent({
 
 
       const numGrups:number = this.numGrups;
-      GrupCooperatiuService.saveMescla(grupCooperatiu,resultat,members,numGrups);
+      await GrupCooperatiuService.saveMescla(grupCooperatiu,resultat,members,numGrups);
+
+      dialog.hide();
     },
     canviGrup(membre:Membre){
       this.$q.dialog({

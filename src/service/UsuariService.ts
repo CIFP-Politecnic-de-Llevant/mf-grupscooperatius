@@ -53,7 +53,7 @@ export class UsuariService {
       expedient: json.gestibExpedient,
       esAlumne: json.gestibAlumne,
       esProfessor: json.gestibProfessor,
-      grup: (json.gestibGrup && includeGrup)?await GrupService.getByGestibIdentificador(json.gestibGrup):undefined,
+      //grup: (json.gestibGrup && includeGrup)?await GrupService.getByGestibIdentificador(json.gestibGrup):undefined,
       label: json.gestibCognom1 + ' ' + json.gestibCognom2 + ', '+ json.gestibNom,
       value: json.idusuari
     }
