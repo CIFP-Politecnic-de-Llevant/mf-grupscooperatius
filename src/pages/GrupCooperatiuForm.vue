@@ -263,7 +263,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-close-popup @click="mesclaGenetica(100000000)">
+            <q-item clickable v-close-popup @click="mesclaGenetica(500000000)">
               <q-item-section>
                 <q-item-label>Molt Acurada</q-item-label>
               </q-item-section>
